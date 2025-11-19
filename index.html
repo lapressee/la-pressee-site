@@ -1,12 +1,508 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Pressée – Huile fraîche artisanale</title>
+  <meta charset="UTF-8">
+  <title>La Pressée – Huiles fraîches pressées à la demande</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Huiles végétales fraîches, pressées à la demande en petite quantité, pour le visage, le corps et la cuisine. Fabrication artisanale en France.">
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --accent: #c89c5b;
+      --accent-dark: #73512b;
+      --text: #2e2924;
+      --muted: #7b6f60;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      max-width: 1080px;
+      margin: 16px auto 40px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 span {
+      color: var(--accent-dark);
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-dark);
+      margin-bottom: 12px;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--accent-dark);
+      margin-right: 10px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent-dark);
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #55371b;
+    }
+
+    .btn-ghost {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-dark);
+      background: transparent;
+      color: var(--accent-dark);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-ghost:hover {
+      background: #f0e2d2;
+    }
+
+    .hero-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, #f2e3cf, #f8f3eb);
+      border-radius: 24px;
+      padding: 18px;
+      border: 1px solid rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
+
+    .bottle-placeholder {
+      flex: 1;
+      border-radius: 18px;
+      border: 1px dashed rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 16px;
+    }
+
+    .hero-image-footer {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image-footer strong {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto 60px;
+      padding: 0 32px 32px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+      margin-bottom: 4px;
+    }
+
+    .product-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .product-meta strong {
+      color: var(--accent-dark);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .process-step-number {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-dark);
+      margin-bottom: 4px;
+    }
+
+    .process-step-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .highlight-box {
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 16px;
+      background: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .highlight-box strong {
+      color: var(--accent-dark);
+    }
+
+    .contact-block {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .contact-block a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .contact-block a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 32px 30px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 780px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      main {
+        padding: 0 24px 24px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+        margin-top: 4px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family:Arial; text-align:center; padding-top:50px;">
-    <h1>Bienvenue chez <em>La Pressée</em> 🌿</h1>
-    <p>Huiles fraîches pressées à froid, à la demande, dans notre atelier en Île-de-France.</p>
+<body>
+
+  <header>
+    <div class="logo">LA PRESSÉE <span>huile fraîche</span></div>
+    <nav>
+      <a href="#produits">Produits</a>
+      <a href="#atelier">L’atelier</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">Huiles fraîches artisanales</div>
+      <h1>Des huiles <span>pressées à la demande</span>, pour une peau et une assiette qui respirent le vivant.</h1>
+      <p>
+        La Pressée est un petit atelier français qui presse des graines au moment où vous commandez.
+        Pas de stock qui dort, pas de formule anonyme&nbsp;: chaque flacon est préparé en micro-lot,
+        pour garder le parfum, la couleur et l’énergie de l’huile fraîche.
+      </p>
+      <div class="hero-cta">
+        <a href="#produits" class="btn-primary">Découvrir les huiles</a>
+        <a href="#contact" class="btn-ghost">Me demander un conseil</a>
+      </div>
+      <div class="hero-note">
+        Fabrication artisanale en petite série · Idéal pour peaux sensibles et amoureux de produits bruts.
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="bottle-placeholder">
+        Ici, vous pourrez ajouter <br>une photo de votre bouteille<br>(huile + graines visibles).
+      </div>
+      <div class="hero-image-footer">
+        <span><strong>Pressée à la commande</strong><br>date de pressage indiquée sur l’étiquette</span>
+        <span><strong>Origine France</strong><br>atelier artisanal, petite production</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="produits">
+      <h2>Les huiles de La Pressée</h2>
+      <p class="section-intro">
+        Une mini-sélection d’huiles fraîches, pensées pour la peau et/ou la cuisine. Chaque référence est pressée
+        en petite quantité. Vous recevrez un flacon numéroté, avec la date exacte de pressage.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="tag">Visage & corps</div>
+          <h3>Huile de graines de persil – “Clarté Botanique”</h3>
+          <p>
+            Une huile légère, illuminatrice, idéale pour les peaux claires à légèrement mates.
+            Aide à uniformiser le teint, apporte de l’éclat sans alourdir.
+          </p>
+          <p class="product-meta">
+            <strong>Type de peau :</strong> normale, mixte, sensible<br>
+            <strong>Usage :</strong> quelques gouttes le soir sur peau légèrement humide.<br>
+            <strong>Format conseillé :</strong> 30 ml / 50 ml
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="tag">Corps</div>
+          <h3>Macérat corps juteux (à définir)</h3>
+          <p>
+            Ici, nous ajouterons votre deuxième produit (baume, huile corps, etc.) dès que vous aurez choisi
+            la formule exacte. Le texte est déjà prêt à être ajusté.
+          </p>
+          <p class="product-meta">
+            <strong>Idée :</strong> huile corps après la douche · fini satiné · parfum très léger.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="tag">Cuisine</div>
+          <h3>Huile fraîche de dégustation</h3>
+          <p>
+            Une huile pressée à la demande pour la cuisine du quotidien&nbsp;: salades, légumes rôtis,
+            finitions. Idéale pour ceux qui veulent goûter la différence entre une huile fraîche
+            et une huile de supermarché.
+          </p>
+          <p class="product-meta">
+            <strong>Usage :</strong> à cru, en fin de cuisson.<br>
+            <strong>Idéal pour :</strong> amateurs de produits bruts, cadeaux gourmets.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="atelier">
+      <h2>L’atelier & la manière de faire</h2>
+      <p class="section-intro">
+        La Pressée n’est pas une usine, mais un atelier. La différence&nbsp;: le temps, l’attention, et le respect
+        de la matière première. Voici comment naît chaque flacon.
+      </p>
+
+      <div class="process-steps">
+        <div>
+          <div class="process-step-number">01</div>
+          <div class="process-step-title">Sélection des graines</div>
+          <p>
+            Graines choisies pour leur fraîcheur, leur origine et leur profil sensoriel.
+            Vous savez exactement ce que vous recevez.
+          </p>
+        </div>
+        <div>
+          <div class="process-step-number">02</div>
+          <div class="process-step-title">Pressage doux</div>
+          <p>
+            Pression à froid, lente, pour éviter de chauffer l’huile. L’objectif&nbsp;: préserver
+            le goût, la couleur et les principes actifs.
+          </p>
+        </div>
+        <div>
+          <div class="process-step-number">03</div>
+          <div class="process-step-title">Repos & mise en bouteille</div>
+          <p>
+            L’huile repose brièvement, sans filtration agressive, puis est mise en bouteille
+            à la main, en petite série.
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:16px;">
+        <strong>Important :</strong> chaque flacon porte sa date de pressage.
+        C’est votre repère pour profiter du moment où l’huile est la plus vivante.
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Me contacter, commander, poser vos questions</h2>
+      <p class="section-intro">
+        Vous hésitez entre plusieurs huiles&nbsp? Vous avez une peau très réactive&nbsp?
+        Vous voulez offrir un coffret mais ne savez pas quoi choisir&nbsp? Écrivez-moi&nbsp;:
+      </p>
+
+      <div class="contact-block">
+        <p>
+          📧 Par email :
+          <br>
+          <strong><a href="mailto:contact@la-pressee.fr">contact@la-pressee.fr</a></strong>
+          (à adapter avec votre vrai email)
+        </p>
+        <p style="margin-top:10px;">
+          Dans votre message, vous pouvez indiquer&nbsp;:
+          <br>– votre type de peau / vos besoins
+          <br>– si c’est pour le visage, le corps, la cuisine, ou un cadeau
+          <br>– votre budget approximatif
+        </p>
+        <p style="margin-top:10px;">
+          Je vous répondrai personnellement avec une proposition simple, et un lien de paiement
+          (par exemple via PayPal) le temps que la boutique en ligne complète soit prête.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© La Pressée – atelier d’huiles fraîches · France</div>
+    <div>Site en cours de construction – micro-production artisanale</div>
+  </footer>
+
 </body>
 </html>
